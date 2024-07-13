@@ -4,6 +4,7 @@ import { showErrorToast } from "../utils/show-toast";
 import api from "../services/api";
 import { deleteAuthToken, storeAuthToken } from "@/utils/storage";
 import { useState } from "react";
+import useAlert from "./use-alert";
 
 type AuthDetails = {
   username: string;
@@ -17,6 +18,7 @@ type AuthResponse = {
 const useAuth = () => {
   const { setIsLoggedIn } = useAuthContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const showAlert = useAlert();
 
   const signIn = async ({ username, password }: AuthDetails) => {
     setIsLoading(true);
@@ -42,8 +44,14 @@ const useAuth = () => {
   };
 
   const signOut = async () => {
-    await deleteAuthToken();
-    setIsLoggedIn(false);
+    showAlert({
+      title: "Sign out",
+      subtitle: "Are you sure you want to sign out?",
+      onPressSubmit: async () => {
+        await deleteAuthToken();
+        setIsLoggedIn(false);
+      },
+    });
   };
 
   return { signIn, signOut, isLoading };

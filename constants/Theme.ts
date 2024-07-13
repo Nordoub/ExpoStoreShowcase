@@ -1,8 +1,9 @@
 export type FontWeight = "300" | "400" | "600";
 export type FontFamily =
-  | "SourceSansPro_300Light"
-  | "SourceSansPro_400Regular"
-  | "SourceSansPro_600SemiBold";
+  | "Montserrat-Regular"
+  | "Montserrat-SemiBold"
+  | "Montserrat-ExtraLight"
+  | "Montserrat-Light";
 export type ThemeColors = Record<string, string>;
 export type ThemeBorderRadiuses = Record<string, number>;
 export type ThemeSpacing = Record<string, number>;
@@ -14,8 +15,11 @@ export type ThemeFontFamilies = Record<string, FontFamily>;
 
 export const COLORS = {
   primary: "#009BAC",
+  primaryLight: "#f0f8ff",
   brand: "#404040",
-  background: "#f0f2f2",
+  background: "white",
+  background2: "#f0f2f2",
+  background3: "#f8f8f8",
   border: "#DDDDDD",
   white: "#FFFFFF",
   error: "#ca0638",
@@ -29,6 +33,7 @@ export const COLORS = {
   disabled: "#B0B0B0", //#D3D3D3 #B0B0B0
   orange: "#FFC000",
   darkOrange: "#DAA520",
+  red: "red",
 } as const satisfies ThemeColors;
 
 export const SPACING = {
@@ -75,10 +80,11 @@ export const FONT_WEIGHTS = {
   bold: "600",
 } as const satisfies ThemeFontWeights;
 
-// export const FONT_FAMILIES = {
-//   sourceSansProLight: 'SourceSansPro_300Light',
-//   sourceSansProRegular: 'SourceSansPro_400Regular',
-//   sourceSansProSemiBold: 'SourceSansPro_600SemiBold',
-// } as const satisfies ThemeFontFamilies;
+export const FONT_FAMILIES = {
+  montserrat: "Montserrat-Regular",
+  montserratSemiBold: "Montserrat-SemiBold",
+  montserratExtraLight: "Montserrat-ExtraLight",
+  montserratLight: "Montserrat-Light",
+} as const satisfies ThemeFontFamilies;
 
 export const TOUCHABLE_OPACITY = 0.7;

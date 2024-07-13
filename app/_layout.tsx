@@ -1,15 +1,15 @@
-import { COLORS, SPACING } from "@/constants/Theme";
-import { Slot, Stack, useRouter, useSegments } from "expo-router";
+import { SPACING } from "@/constants/Theme";
+import { Slot, useRouter, useSegments } from "expo-router";
 import Notification from "@/components/Notification";
 import * as SplashScreen from "expo-splash-screen";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Platform } from "react-native";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AuthProvider, { useAuthContext } from "@/context/AuthProvider";
 import Toast from "react-native-toast-message";
-import { isAuthenticated } from "@/utils/storage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const CustomToast = ({ text1, onPress, type }: any) => (
   <Notification message={text1} onPress={onPress} type={type} />
@@ -23,6 +23,8 @@ const toastConfig = {
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient();
 
 const InitialLayout = () => {
   const { isLoggedIn, setIsLoggedIn } = useAuthContext();
@@ -54,6 +56,10 @@ export default function RootLayout() {
   // Load the fonts we want
   let [fontsLoaded, fontError] = useFonts({
     // SourceSansPro_400Regular,
+    "Montserrat-Regular": require("@/assets/fonts/Montserrat-Regular.ttf"),
+    "Montserrat-SemiBold": require("@/assets/fonts/Montserrat-SemiBold.ttf"),
+    "Montserrat-ExtraLight": require("@/assets/fonts/Montserrat-ExtraLight.ttf"),
+    "Montserrat-Light": require("@/assets/fonts/Montserrat-Light.ttf"),
   });
 
   if (!fontsLoaded && !fontError) {
@@ -66,9 +72,11 @@ export default function RootLayout() {
   return (
     <>
       <GestureHandlerRootView>
-        <AuthProvider>
-          <InitialLayout />
-        </AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <InitialLayout />
+          </AuthProvider>
+        </QueryClientProvider>
       </GestureHandlerRootView>
       <Toast
         config={toastConfig}

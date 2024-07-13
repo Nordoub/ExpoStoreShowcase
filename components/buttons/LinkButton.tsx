@@ -50,7 +50,7 @@ const $ = StyleSheet.create({
     justifyContent: "space-between",
     borderWidth: 1,
     borderColor: COLORS.primary,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryLight,
     padding: SPACING.s,
     borderRadius: BORDER_RADIUSES.xl,
   },

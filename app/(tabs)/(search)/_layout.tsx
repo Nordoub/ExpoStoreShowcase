@@ -8,17 +8,17 @@ export default function SearchStack() {
         name="search"
         options={{
           headerTitle: "Search",
-          headerSearchBarOptions: {
-            placeholder: "Search Test",
-            hideWhenScrolling: false,
-            autoFocus: true,
-            onSearchButtonPress: (e) => {
-              console.log(e.nativeEvent.text);
-            },
-            onChangeText: (e) => {
-              console.log(e.nativeEvent.text);
-            },
-          },
+          // headerSearchBarOptions: {
+          //   placeholder: "Search Test",
+          //   hideWhenScrolling: false,
+          //   autoFocus: true,
+          //   onSearchButtonPress: (e) => {
+          //     console.log(e.nativeEvent.text);
+          //   },
+          //   onChangeText: (e) => {
+          //     console.log(e.nativeEvent.text);
+          //   },
+          // },
         }}
       />
     </Stack>

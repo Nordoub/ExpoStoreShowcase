@@ -1,6 +1,6 @@
 import { StyleSheet, Text as DefaultText, TextProps } from "react-native";
 import React, { PropsWithChildren } from "react";
-import { FONT_SIZES } from "@/constants/Theme";
+import { FONT_FAMILIES, FONT_SIZES } from "@/constants/Theme";
 
 export type FontType = "light" | "normal" | "bold";
 
@@ -19,5 +19,6 @@ export default Text;
 const $ = StyleSheet.create({
   text: {
     fontSize: FONT_SIZES.m,
+    fontFamily: FONT_FAMILIES.montserrat,
   },
 });

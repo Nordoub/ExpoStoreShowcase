@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 
 export default function CartStack() {
   return (
-    <Stack screenOptions={HEADER_OPTIONS}>
+    <Stack>
       <Stack.Screen name="cart" options={{ headerTitle: "Cart" }} />
     </Stack>
   );
