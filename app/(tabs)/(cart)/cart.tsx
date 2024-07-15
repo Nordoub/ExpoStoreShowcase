@@ -4,6 +4,8 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+  useWindowDimensions,
+  View,
 } from "react-native";
 import React, { useCallback } from "react";
 import { COLORS, FONT_SIZES, SPACING } from "@/constants/Theme";
@@ -13,6 +15,7 @@ import Screen from "@/components/Screen";
 import Card from "@/components/Card";
 import Animated, {
   CurvedTransition,
+  Easing,
   EntryExitTransition,
   LinearTransition,
   SlideInDown,
@@ -52,6 +55,7 @@ const Cart = () => {
     // @ts-ignore
     ({ item }) => (
       <AnimatedPressable
+        // .easing(Easing.inOut(Easing.sin))
         entering={SlideInDown}
         exiting={SlideOutDown}
         style={{ backgroundColor: "cyan", padding: 10 }}
@@ -82,6 +86,8 @@ const Cart = () => {
     ),
     [setItems]
   );
+  const { height: screenHeight } = useWindowDimensions();
+  const height = screenHeight * 0.6;
 
   return (
     <Screen>
@@ -95,19 +101,19 @@ const Cart = () => {
           ])
         }
       />
-      <FlatList
-        // itemLayoutAnimation={CurvedTransition}
+      <Animated.FlatList
+        itemLayoutAnimation={CurvedTransition}
         keyExtractor={(i) => i}
         data={items}
-        contentContainerStyle={{ gap: 12 }}
+        contentContainerStyle={{ gap: 12, padding: 12 }}
         renderItem={renderItem}
       />
       {/* <Divider style={{ marginVertical: 12, borderWidth: 3 }} /> */}
-      <FlatList
-        // itemLayoutAnimation={CurvedTransition}
+      <Animated.FlatList
+        itemLayoutAnimation={CurvedTransition}
         keyExtractor={(i) => i}
         data={items2}
-        contentContainerStyle={{ gap: 12 }}
+        contentContainerStyle={{ gap: 12, padding: 12 }}
         renderItem={renderItem2}
       />
     </Screen>
