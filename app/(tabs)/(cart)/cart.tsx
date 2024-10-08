@@ -17,6 +17,8 @@ import Animated, {
   CurvedTransition,
   Easing,
   EntryExitTransition,
+  FadeInDown,
+  FadeInUp,
   LinearTransition,
   SlideInDown,
   SlideInLeft,
@@ -48,7 +50,7 @@ const Cart = () => {
   const [items2, setItems2] = React.useState(DATA2);
   const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-  const sortAphabetically = (a: string, b: string) =>
+  const sortAlphabetically = (a: string, b: string) =>
     a.toLowerCase().localeCompare(b.toLowerCase());
 
   const renderItem = useCallback(
@@ -56,12 +58,17 @@ const Cart = () => {
     ({ item }) => (
       <AnimatedPressable
         // .easing(Easing.inOut(Easing.sin))
-        entering={SlideInDown}
+        entering={FadeInDown}
         exiting={SlideOutDown}
-        style={{ backgroundColor: "cyan", padding: 10 }}
+        style={{
+          backgroundColor: "cyan",
+          padding: 10,
+          borderWidth: 1,
+          borderColor: COLORS.border,
+        }}
         onPress={() => {
           setItems((items) => items.filter((i) => i !== item));
-          setItems2((items) => [...items, item].sort(sortAphabetically));
+          setItems2((items) => [...items, item].sort(sortAlphabetically));
         }}
       >
         <Text>{item}</Text>
@@ -73,12 +80,17 @@ const Cart = () => {
     // @ts-ignore
     ({ item }) => (
       <AnimatedPressable
-        entering={SlideInUp}
+        entering={FadeInUp}
         exiting={SlideOutUp}
-        style={{ backgroundColor: "yellow", padding: 10 }}
+        style={{
+          backgroundColor: "yellow",
+          padding: 10,
+          borderWidth: 1,
+          borderColor: COLORS.border,
+        }}
         onPress={() => {
           setItems2((items) => items.filter((i) => i !== item));
-          setItems((items) => [...items, item].sort(sortAphabetically));
+          setItems((items) => [...items, item].sort(sortAlphabetically));
         }}
       >
         <Text>{item}</Text>
@@ -90,7 +102,7 @@ const Cart = () => {
   const height = screenHeight * 0.6;
 
   return (
-    <Screen>
+    <Screen style={{ paddingBottom: 80 }}>
       <Button
         title={"Add one"}
         style={{ marginBottom: 12 }}
@@ -105,7 +117,12 @@ const Cart = () => {
         itemLayoutAnimation={CurvedTransition}
         keyExtractor={(i) => i}
         data={items}
-        contentContainerStyle={{ gap: 12, padding: 12 }}
+        contentContainerStyle={{
+          gap: 12,
+          padding: 12,
+          // backgroundColor: "white",
+          flex: 1,
+        }}
         renderItem={renderItem}
       />
       {/* <Divider style={{ marginVertical: 12, borderWidth: 3 }} /> */}
@@ -113,7 +130,12 @@ const Cart = () => {
         itemLayoutAnimation={CurvedTransition}
         keyExtractor={(i) => i}
         data={items2}
-        contentContainerStyle={{ gap: 12, padding: 12 }}
+        contentContainerStyle={{
+          gap: 12,
+          padding: 12,
+          // backgroundColor: "orange",
+          flex: 1,
+        }}
         renderItem={renderItem2}
       />
     </Screen>
