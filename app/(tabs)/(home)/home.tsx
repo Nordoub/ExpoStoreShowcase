@@ -7,6 +7,11 @@ import LinkButton from "@/components/buttons/LinkButton";
 import ScrollableScreen from "@/components/ScrollableScreen";
 import Text from "@/components/Text";
 import useGetUserQuery from "@/hooks/queries/useGetUserQuery";
+import {
+  showSuccessToast,
+  showErrorToast,
+  showInfoToast,
+} from "@/utils/show-toast";
 
 const USER_ID = 1;
 
@@ -21,7 +26,18 @@ const Home = () => {
         <LinkButton title="Link to settings" href="/settings" />
       </Card>
       <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Button title="Press me" />
+      <Button
+        title="Show success toast"
+        onPressIn={() => showSuccessToast("Showing success toast")}
+      />
+      <Button
+        title="Show error toast"
+        onPressIn={() => showErrorToast("Showing error toast")}
+      />
+      <Button
+        title="Show info toast"
+        onPressIn={() => showInfoToast("Showing info toast")}
+      />
       <LinkButton title="Link to cart" href="/cart" icon="airplane" />
     </ScrollableScreen>
   );

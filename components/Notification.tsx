@@ -36,6 +36,8 @@ type Props = {
   type: Type;
 };
 
+const ICON_SIZE = 25;
+
 const getValues = (type: Type): Value => {
   switch (type) {
     case "success":
@@ -71,7 +73,12 @@ const Notification = ({ onPress, message, type }: Props) => {
       style={[$.container, { borderColor: color, backgroundColor }]}
       onPress={onPress}
     >
-      <Icon height={25} width={25} color={color} />
+      <Icon
+        height={ICON_SIZE}
+        width={ICON_SIZE}
+        color={color}
+        style={{ position: "absolute", left: SPACING.x1s }}
+      />
       <View style={$.textContainer}>
         <Text style={[$.text, { color }]} numberOfLines={3}>
           {message}
