@@ -22,9 +22,9 @@ const GroupedButtons = ({ title, buttons }: Props) => {
         {buttons.map((s, index) => {
           const isLastItem = index + 1 === buttons.length;
           return (
-            <View>
+            <View key={s.title + index + "view"}>
               <ActionButton
-                key={s.title}
+                key={s.title + index + "item"}
                 title={s.title}
                 iconLeft={s.iconLeft}
                 style={$.option}
